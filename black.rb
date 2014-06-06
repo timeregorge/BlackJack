@@ -19,7 +19,7 @@ end
 def play(name)
 puts "#{name}, I'm your dealer today,would you like to play the game of blackjcak?"
 puts "1)Yes 2)No (1 or 2)"
-#---------------------------------choose------------------------------
+#---------------------------------choose-----------------------------
 	while true
 		play_game = gets.chomp  
 		puts "not correct choose" if !['1','2'].include?(play_game)

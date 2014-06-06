@@ -137,7 +137,7 @@ def dealer_hold_blackjack
 		next
 	end
 end
-#----------------count total value--------------------
+#----------------count total value--------------------------
 def total_value(number)
 		pick  =  number.map{|e| e[1]}
 		tal = 0

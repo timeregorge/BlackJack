@@ -8,9 +8,6 @@ def welcome(player)
 	
 	puts "Nice to meet you, #{player}"
 end
-
-
-
 #--------------------------play again--------------------------------
 def play_more(more_game)
 	puts "play again? "
@@ -26,12 +23,10 @@ end
 def play(name)
 puts "#{name}, I'm your dealer today,would you like to play the game of blackjcak?"
 puts "1)Yes 2)No (1 or 2)"
-	
 #---------------------------------choose------------------------------
 	while true
 		play_game = gets.chomp  
 		puts "not correct choose" if !['1','2'].include?(play_game)
-			
 			
 		if play_game == '1'
 			puts "are you ready?"
@@ -59,17 +54,12 @@ def dealing(play_game)
 	player_total = total_value(player)
 	dealer_total = total_value(dealer)
 	if play_game == '1'
-		puts "this is dealers #{dealer} "
-		
+		puts "this is dealers #{dealer} "	
 		puts "this is players #{player} total is #{player_total}"
 		compare(player, dealer, player_total,dealer_total,new_deal)
 	else
-
-	
 		deal_turn(player, dealer, player_total,dealer_total,new_deal,name)
 	end
-	
-
 end
 #--------------------------------compare------------------------------------
 def compare(player, dealer, player_total,dealer_total,new_deal)
@@ -93,20 +83,15 @@ def compare(player, dealer, player_total,dealer_total,new_deal)
 					break
 				elsif player_total == 21
 					puts "your turn now!"
-
 					deal_turn(player, dealer, player_total,dealer_total,new_deal)
-
 				end
 
-			elsif hit_or_stay == '2'
+				elsif hit_or_stay == '2'
 				puts "dealers turn"
 				deal_turn(player, dealer, player_total,dealer_total,new_deal)
-				break
-				
+				break		
 			end
-
 		next
-
 	end
 end
 #-----------------------DEALER TURN-------------------------
@@ -114,36 +99,34 @@ def deal_turn(player, dealer, player_total,dealer_total,new_deal)
 
 	while dealer_total < 21	
 		
-			if dealer_total < 17 
-				
-				dealer << new_deal.pop
-				puts "dealers cards #{dealer}"
-				dealer_total = total_value(dealer)
-				puts "dealers value #{dealer_total}"
-				
-					if dealer_total > 21
-						puts "oh!no! I'm busted! you win!"
-						play_more('')
-						break
+		if dealer_total < 17 
+			
+			dealer << new_deal.pop
+			puts "dealers cards #{dealer}"
+			dealer_total = total_value(dealer)
+			puts "dealers value #{dealer_total}"
+			
+			if dealer_total > 21
+				puts "oh!no! I'm busted! you win!"
+				play_more('')
+				break
 
-					elsif dealer_total >= player_total
-						puts "are you ready to show your card?"
-						sleep 2
-						puts "dealer win "
-						puts "dealer cards #{dealer}"
-						play_more('')
-						break
-					end
-					
-				
-			elsif dealer_total >= 17
-			 	puts dealer_total >= player_total ? "you lost" : "dealer lost"
-			 	puts "dealers value #{dealer_total}"
-			 	play_more('')
-			 	break
-				
+			elsif dealer_total >= player_total
+				puts "are you ready to show your card?"
+				sleep 2
+				puts "dealer win "
+				puts "dealer cards #{dealer}"
+				play_more('')
+				break
 			end
-
+					
+		elsif dealer_total >= 17
+		 	puts dealer_total >= player_total ? "you lost" : "dealer lost"
+		 	puts "dealers value #{dealer_total}"
+		 	play_more('')
+		 	break
+			
+		end
 		next
 	end	
 end
@@ -158,13 +141,11 @@ def dealer_hold_blackjack
 		puts "please!answer that!" if !['1','2'].include?(again_or_not)
 			if again_or_not == '1'
 				play_again
-			
-			
+
 			elsif again_or_not == '2'
 				puts "thanks to play game, bye bye!"
 				exit
 			end
-
 		next
 	end
 end
@@ -174,23 +155,21 @@ def total_value(number)
 		pick  =  number.map{|e| e[1]}
 		tal = 0
 		pick.each do |value|
-			if value == 'J'||value =='Q'|| value == 'K'
-				tal += 10 
-			elsif value == 'A'
-				tal += 11
-			elsif value.to_i != 0
-				tal += value.to_i
-			end		
-			
+		if value == 'J'||value =='Q'|| value == 'K'
+			tal += 10 
+		elsif value == 'A'
+			tal += 11
+		elsif value.to_i != 0
+			tal += value.to_i
+		end					
 
-			if value == 'A' && tal >21
-				tal -= 10
-			end
+		if value == 'A' && tal >21
+			tal -= 10
+		end
 
 		end
 		tal
 end
-
 
 name = gets.chomp
 welcome(name)
